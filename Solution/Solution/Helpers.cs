@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Solution
 {
-    public class Solution
+    static class Helpers
     {
         static void Solve()
         {
@@ -81,8 +81,7 @@ namespace Solution
             return token;
         }
 
-
-        static void Main(string[] args)
+        public static void RenameToMain(string[] args)
         {
             int t = ReadInt();
 
@@ -91,7 +90,7 @@ namespace Solution
                 Solve();
             }
 
-            Console.ReadLine();
+            //Console.ReadLine();
         }
     }
 }
