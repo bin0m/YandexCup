@@ -11,24 +11,12 @@ namespace Solution
             int n = ReadInt();
             int ans = 123;
 
-            PrintCase();
             Console.WriteLine(ans);
+            //Console.ReadLine();
         }
 
-
-        static int _caseNum;
         static IEnumerable<string> _tokens;
         static IEnumerator<string> _tokenEnumarator;
-
-        static void PrintCase()
-        {
-            Console.Write($"Case #{_caseNum}: ");
-        }
-
-        static void PrintCaseLine()
-        {
-            Console.WriteLine($"Case #{_caseNum}: ");
-        }
 
         static int ReadInt()
         {
@@ -83,12 +71,7 @@ namespace Solution
 
         public static void RenameToMain(string[] args)
         {
-            int t = ReadInt();
-
-            for (_caseNum = 1; _caseNum <= t; _caseNum++)
-            {
-                Solve();
-            }
+            Solve();
 
             //Console.ReadLine();
         }

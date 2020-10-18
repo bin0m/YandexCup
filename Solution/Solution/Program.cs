@@ -9,26 +9,67 @@ namespace Solution
         static void Solve()
         {
             int n = ReadInt();
-            int ans = 123;
+            int x = ReadInt();
+            int k = ReadInt();
 
-            PrintCase();
-            Console.WriteLine(ans);
+            int[] arr = ReadIntArr();
+
+            var startTimes = new int[x];
+            for (int i = 0; i < x; i++)
+            {
+                startTimes[i] = int.MaxValue;
+            }
+            for (int i = 0; i < n; i++)
+            {
+                if (arr[i] < startTimes[arr[i] % x])
+                {
+                    startTimes[arr[i] % x] = arr[i];
+                }
+            }
+            var startsList = new List<int>();
+            for (int i = 0; i < x; i++)
+            {
+                if (startTimes[i] < int.MaxValue)
+                {
+                    startsList.Add(startTimes[i]);
+                }
+            }
+
+            int from = 0;
+            int to = int.MaxValue;
+            int mid = 0;
+
+            while (from <= to)
+            {
+                mid = (from + to) / 2;
+                int sum = 0;
+                foreach (int start in startsList)
+                {
+                    sum += (mid - start + x) / x;
+                }
+                if (sum == k)
+                {
+                    Console.WriteLine(mid);
+                    return;
+                }
+                if (sum < k)
+                {
+                    from = mid + 1;
+                }
+                else
+                {
+                    to = mid - 1;
+                }
+            }
+
+            Console.WriteLine(mid);
+
+            //
+            Console.ReadLine();
         }
 
-
-        static int _caseNum;
         static IEnumerable<string> _tokens;
         static IEnumerator<string> _tokenEnumarator;
-
-        static void PrintCase()
-        {
-            Console.Write($"Case #{_caseNum}: ");
-        }
-
-        static void PrintCaseLine()
-        {
-            Console.WriteLine($"Case #{_caseNum}: ");
-        }
 
         static int ReadInt()
         {
@@ -84,14 +125,9 @@ namespace Solution
 
         static void Main(string[] args)
         {
-            int t = ReadInt();
+            Solve();
 
-            for (_caseNum = 1; _caseNum <= t; _caseNum++)
-            {
-                Solve();
-            }
-
-            Console.ReadLine();
+            //Console.ReadLine();
         }
     }
 }
